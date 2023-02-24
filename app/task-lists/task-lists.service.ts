@@ -35,13 +35,14 @@ export class TaskListsService {
     const { user_id, name } = fields;
     return this.prisma.$transaction(async (tx) => {
       const task_list = await tx.task_lists.create({ data: { name } });
-      return tx.user_grant_task_lists.create({
+      await tx.user_grant_task_lists.create({
         data: {
           task_list_id: task_list.id,
           grant_id: Grants.Owner,
           user_id,
         },
       });
+      return task_list;
     });
   }
 

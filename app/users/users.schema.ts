@@ -1,4 +1,4 @@
-import Joi from 'joi';
+import * as Joi from 'joi';
 import { SchemaType } from '../Types';
 import { Type } from './users.type';
 

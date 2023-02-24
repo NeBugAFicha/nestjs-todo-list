@@ -34,11 +34,14 @@ export class TasksController {
   ) {
     const { task_list_id, id } = param;
 
-    await this.checkGrantsService.checkGrants({
-      task_list_id,
-      user_id: current_user_id,
-      grants: [Grants.Read],
-    });
+    await this.checkGrantsService.checkGrants(
+      {
+        task_list_id,
+        user_id: current_user_id,
+        grants: [Grants.Owner, Grants.Read],
+      },
+      true,
+    );
 
     const result = await this.tasksService.findById({ id });
 
@@ -54,11 +57,14 @@ export class TasksController {
   ) {
     const { task_list_id } = param;
 
-    await this.checkGrantsService.checkGrants({
-      task_list_id,
-      user_id: current_user_id,
-      grants: [Grants.Create],
-    });
+    await this.checkGrantsService.checkGrants(
+      {
+        task_list_id,
+        user_id: current_user_id,
+        grants: [Grants.Owner, Grants.Create],
+      },
+      true,
+    );
 
     const { name } = body;
     const result = await this.tasksService.create({ name, task_list_id });
@@ -74,11 +80,14 @@ export class TasksController {
   ) {
     const { task_list_id, id } = param;
 
-    await this.checkGrantsService.checkGrants({
-      task_list_id,
-      user_id: current_user_id,
-      grants: [Grants.Delete],
-    });
+    await this.checkGrantsService.checkGrants(
+      {
+        task_list_id,
+        user_id: current_user_id,
+        grants: [Grants.Owner, Grants.Delete],
+      },
+      true,
+    );
 
     const result = await this.tasksService.delete({ id });
 
@@ -94,11 +103,14 @@ export class TasksController {
   ) {
     const { task_list_id, id } = param;
 
-    await this.checkGrantsService.checkGrants({
-      task_list_id,
-      user_id: current_user_id,
-      grants: [Grants.Update],
-    });
+    await this.checkGrantsService.checkGrants(
+      {
+        task_list_id,
+        user_id: current_user_id,
+        grants: [Grants.Owner, Grants.Update],
+      },
+      true,
+    );
 
     const { name } = body;
     const result = await this.tasksService.update({ id }, { name });

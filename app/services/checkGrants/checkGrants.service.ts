@@ -27,7 +27,9 @@ export class CheckGrantsService {
 
     if (!result && throwException) {
       throw new ForbiddenException(
-        `No ${grants.map((grant) => Grants[grant]).join(' or ')} Grant or task list doesnt exist`,
+        `No ${grants
+          .map((grant) => Grants[grant])
+          .join(' or ')} Grant or task list doesnt exist`,
       );
     }
 

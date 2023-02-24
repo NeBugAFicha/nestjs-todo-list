@@ -11,7 +11,6 @@ import {
   UsePipes,
 } from '@nestjs/common';
 import { Grants } from '../grants';
-import { GrantsService } from '../grants/grants.service';
 import { CheckGrantsService } from '../services/checkGrants/checkGrants.service';
 import { AuthGuard } from '../services/Guard';
 import { JoiValidationPipe } from '../services/Validation';
@@ -56,7 +55,7 @@ export class TaskListsController implements Methods {
   ) {
     const { id } = param;
 
-    const result: any = await this.taskListService.findById({
+    const result = await this.taskListService.findById({
       id,
       user_id: current_user_id,
     });
@@ -85,8 +84,7 @@ export class TaskListsController implements Methods {
     @Body() body: Type['create']['body'],
   ) {
     const { name } = body;
-
-    const result = this.taskListService.create({
+    const result = await this.taskListService.create({
       user_id: current_user_id,
       name,
     });

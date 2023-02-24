@@ -10,7 +10,6 @@ import {
 import { Grants } from '../grants';
 import { CheckGrantsService } from '../services/checkGrants/checkGrants.service';
 import { AuthGuard } from '../services/Guard';
-import { PrismaService } from '../services/prisma/prisma.service';
 import { JoiValidationPipe } from '../services/Validation';
 import { ControllerMethods } from '../Types';
 import { Schema } from './grants.schema';

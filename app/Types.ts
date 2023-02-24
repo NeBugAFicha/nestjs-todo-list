@@ -14,6 +14,12 @@ export type GenericObject<T = any> = {
 export type GenericRoute = {
   [key: string]: RouteInterface<GenericObject>;
 };
+
+export interface Response<T> {
+  success: boolean;
+  data?: T;
+  error?: string;
+}
 // export interface ExtendedRequest<
 //   ReqParam = GenericObject,
 //   ReqBody = GenericObject,
